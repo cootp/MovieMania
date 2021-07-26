@@ -5,19 +5,48 @@
 #include "BST.h"
 #include "Movies.h"
 using namespace std;
-void mainMenu();
-void BSTLooper(string searchType);
+void mainMenu(BST* root);
+void BSTLooper(string searchType, BST* root);
 int main()
 {
-	cout << "Hello Stranger! Welcome to Movie Mania." << endl;
+	// Code that inputs all information for the BST and maps in alphabetical order
+	BST* root = NULL;
+	ifstream movieInfo("IMDb_movies.csv");
+	int i = 0;
+	string title, year, genre, duration;
+	cout << "Importing Data. Please Wait." << endl;
+	while (!movieInfo.eof()) {
+		// Used to skip the first row of the csv file that contains the column info
+		if (i == 0) {
+			string temp;
+			getline(movieInfo, temp, ',');
+			getline(movieInfo, temp, ',');
+			getline(movieInfo, temp, ',');
+			getline(movieInfo, temp);
+			i++;
+		}
+		// Retrieves the information for title, year, genre, duration and inserts into BST
+		getline(movieInfo, title, ',');
+		getline(movieInfo, year, ',');
+		getline(movieInfo, genre, ',');
+		getline(movieInfo, duration);
+		// Creates Movie obj with gathered information
+		Movies obj(title, year, genre, duration);
+		// Inserts into BST
+		root = root->insert(root, obj);
+		//Insert into Maps
+	}
+	system("cls");
+	cout << "Hello Stranger! Welcome to Movie Mania." << endl << endl;
 	cout << "Movie Mania contains over 80,000 movies for you to search from." << endl;
 	cout << endl;
 	system("pause");
 	system("cls");
-	mainMenu();
+	cout << "	   Let's find your movie" << endl << endl;
+	mainMenu(root);
 }
 // Main menu function to display type of search options
-void mainMenu() {
+void mainMenu(BST* root) {
 	bool checkMaps = false;
 	bool checkBST = false;
 	bool checkALL = false;
@@ -41,7 +70,7 @@ void mainMenu() {
 	else {
 		cout << "This is not a valid option. Let's try again from the beginning." << endl;
 		cout << endl;
-		mainMenu();
+		mainMenu(root);
 	}
 	cout << "----------Choose Your Search Type----------" << endl;
 	cout << "	1. All		2. Year" << endl;
@@ -64,7 +93,7 @@ void mainMenu() {
 	default:
 		cout << "This is not a valid option. Let's try again from the beginning." << endl;
 		cout << endl;
-		mainMenu();
+		mainMenu(root);
 		break;
 	}
 	system("cls");
@@ -81,7 +110,7 @@ void mainMenu() {
 	}
 	else if (checkBST == true && checkALL == true) {
 		searchType = "ALL";
-		BSTLooper(searchType);
+		BSTLooper(searchType, root);
 	}
 	else if (checkBST == true && checkYear == true) {
 
@@ -94,30 +123,17 @@ void mainMenu() {
 	}
 }
 
-void BSTLooper(string searchType){
-	ifstream movieInfo("IMDb_movies.csv");
-	int i = 0;
-	string title, year, genre, duration;
-	while (!movieInfo.eof()) {
-		// Used to skip the first row of the csv file
-		if (i == 0) {
-			string temp;
-			getline(movieInfo, temp, ',');
-			getline(movieInfo, temp, ',');
-			getline(movieInfo, temp, ',');
-			getline(movieInfo, temp);
-			i++;
-		}
-		getline(movieInfo, title, ',');
-		getline(movieInfo, year, ',');
-		getline(movieInfo, genre, ',');
-		getline(movieInfo, duration);
-		getline(movieInfo, title, ',');
-		cout << title << endl;
-		cout << year << endl;
-		cout << genre << endl;
-		cout << duration << endl;
-		cout << endl;
-		
+void BSTLooper(string searchType, BST* root){
+	if (searchType == "ALL") {
+		root->inorderALL(root);
+	}
+	else if (searchType == "YEAR") {
+
+	}
+	else if (searchType == "GENRE") {
+
+	}
+	else if (searchType == "DURATION") {
+
 	}
 }

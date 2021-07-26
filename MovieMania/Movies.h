@@ -2,14 +2,15 @@
 using namespace std;
 class Movies {
 private:
-	std::string title;
-	int year;
-	std::string genre;
-	int duration;
+	string title;
+	string year;
+	string genre;
+	string duration;
 public:
-	Movies(string title_, int year_, string genre_, int duration_);
+	Movies();
+	Movies(string title_, string year_, string genre_, string duration_);
 	string getTitle();
-	int getYear();
+	string getYear();
 	string getGenre();
-	int getDuration();
+	string getDuration();
 };

@@ -2,10 +2,11 @@
 #include "Movies.h"
 class BST {
 public:
-	int val;
+	Movies val;
 	BST* left;
 	BST* right;
 
-	BST(int x);
+	BST(Movies x);
 	BST* insert(BST* root, Movies obj);
+	void inorderALL(BST* root);
 };
