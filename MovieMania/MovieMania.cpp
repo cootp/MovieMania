@@ -98,7 +98,6 @@ void mainMenu(BST* root) {
 	}
 	system("cls");
 	if (checkMaps == true && checkALL == true) {
-		searchType = "All";
 		
 	}else if (checkMaps == true && checkYear == true) {
 
@@ -113,7 +112,8 @@ void mainMenu(BST* root) {
 		BSTLooper(searchType, root);
 	}
 	else if (checkBST == true && checkYear == true) {
-
+		searchType = "YEAR";
+		BSTLooper(searchType, root);
 	}
 	else if (checkBST == true && checkGenre == true) {
 
@@ -128,7 +128,7 @@ void BSTLooper(string searchType, BST* root){
 		root->inorderALL(root);
 	}
 	else if (searchType == "YEAR") {
-
+		root->sortByString(root, searchType);
 	}
 	else if (searchType == "GENRE") {
 
