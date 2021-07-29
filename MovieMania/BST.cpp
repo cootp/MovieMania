@@ -25,8 +25,29 @@ void BST::inorderALL(BST* root) {
 	}
 	else {
 		inorderALL(root->left);
-		cout << root->val.getTitle() << endl;
+		cout << "Title: " << root->val.getTitle() << endl;
+		cout << "Year: " << root->val.getYear() << endl;
+		cout << "Genre: " << root->val.getGenre() << endl;
+		cout << "Duration: " << root->val.getDuration() << endl;
+		cout << endl;
 		inorderALL(root->right);
+	}
+}
+
+void BST::inorderGenre(BST* root, string searchType) {
+	if (root == NULL) {
+		cout << "";
+	}
+	else {
+		inorderGenre(root->left, searchType);
+		if (root->val.getGenre() == searchType) {
+			cout << "Title: " << root->val.getTitle() << endl;
+			cout << "Year: " << root->val.getYear() << endl;
+			cout << "Genre: " << root->val.getGenre() << endl;
+			cout << "Duration: " << root->val.getDuration() << endl;
+			cout << endl;
+		}
+		inorderGenre(root->right, searchType);
 	}
 }
 
@@ -42,23 +63,39 @@ void BST::traversBST(BST* root) {
 }
 
 void BST::sortByString(BST* root, string newString){
-	if (newString == "YEAR") {
-		traversBST(root);
+	traversBST(root);
+	if (newString == "Year") {
 		cout << "We are now sorting the BST by year." << endl;
 		sort(tempSort.begin(), tempSort.end(), CompareYear);
-	}else if (newString == "GENRE") {
-
+	}else if (newString == "Genre") {
+		cout << "We are now sorting the BST by genre." << endl;
+		sort(tempSort.begin(), tempSort.end(), CompareGenre);
 	}
-	else if (newString == "DURATION") {
-
+	else if (newString == "Duration") {
+		cout << "We are now sorting the BST by duration." << endl;
+		sort(tempSort.begin(), tempSort.end(), CompareDuration);
 	}
 	for (auto it : tempSort) {
-		cout << it.getYear() << endl;
+		cout << "Title: " << it.getTitle() << endl;
+		cout << "Year: " << it.getYear() << endl;
+		cout << "Genre: " << it.getGenre() << endl;
+		cout << "Duration: " << it.getDuration() << endl;
+		cout << endl;
 	}
 }
 bool BST::CompareYear(Movies left, Movies right)
 {
 	return left.getYear() < right.getYear();
+}
+
+bool BST::CompareGenre(Movies left, Movies right)
+{
+	return left.getGenre() < right.getGenre();
+}
+
+bool BST::CompareDuration(Movies left, Movies right)
+{
+	return left.getDuration() < right.getDuration();
 }
 
 

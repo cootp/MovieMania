@@ -1,4 +1,4 @@
-#include "Map.h"
+/*#include "Map.h"
 void Map::insert(Movies* movie, string name) {
 
 	m[name] = *movie;
@@ -57,4 +57,4 @@ void Map::printAll() {
 	for (auto itr = m.begin(); itr != m.end(); itr++) {
 		cout << itr->first << endl;
 	}
-}
+}*/

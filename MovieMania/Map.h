@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <string>
 #include <map>
 #include <iostream>
@@ -24,4 +24,4 @@ public:
 	bool sortByDuration(pair<string, Movies>& a, pair<string, Movies>& b);
 
 	void printAll();
-};
+};*/
