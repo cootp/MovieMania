@@ -6,13 +6,16 @@
 #include <string>
 #include "BST.h"
 #include "Movies.h"
+#include "MapBST.h"
 using namespace std;
 void mainMenu(BST* root);
 void BSTLooper(string searchType, BST* root, string genreType);
+void mapLooper(string searchType, MapBST* root, string genreType);
 int main()
 {
 	// Code that inputs all information for the BST and maps in alphabetical order
 	BST* root = NULL;
+	MapBST* mapRoot = nullptr;
 	ifstream movieInfo("IMDb_movies.csv");
 	int i = 0;
 	string title, year, genre, duration;
@@ -37,6 +40,7 @@ int main()
 		// Inserts into BST
 		root = root->insert(root, obj);
 		//Insert into Maps
+		mapRoot = mapRoot->insert(obj, mapRoot);
 	}
 	system("cls");
 	cout << "Hello Stranger! Welcome to Movie Mania." << endl << endl;
@@ -112,12 +116,14 @@ void mainMenu(BST* root) {
 	system("cls");
 	if (checkMaps == true && checkALL == true) {
 		
-	}else if (checkMaps == true && checkYear == true) {
+	}
+	else if (checkMaps == true && checkYear == true) {
 
 	}
 	else if (checkMaps == true && checkGenre == true) {
 
-	}else if (checkMaps == true && checkDuration == true) {
+	}
+	else if (checkMaps == true && checkDuration == true) {
 
 	}
 	else if (checkMaps == true && checkGenreSearch == true) {
@@ -171,4 +177,35 @@ void BSTLooper(string searchType, BST* root, string genreType){
 	cout << endl;
 	system("cls");
 	mainMenu(root);
+}
+
+void mapLooper(string searchType, MapBST* root, string genreType) {
+	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
+	using namespace std::chrono;
+	high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	if (searchType == "All") {
+		
+	}
+	else if (searchType == "Year") {
+		
+	}
+	else if (searchType == "Genre") {
+		
+	}
+	else if (searchType == "Duration") {
+		
+	}
+	else if (searchType == "Genre Search") {
+		
+	}
+	
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+	
+	std::cout << "Searching and Displaying all of the information using a Map and sorting by " << searchType << " took " << time_span.count() << " seconds." << endl;
+	
+	system("pause");
+	cout << endl;
+	system("cls");
+	mainMenu(root);	
 }
