@@ -114,21 +114,30 @@ void mainMenu(BST* root) {
 		break;
 	}
 	system("cls");
+	
+	//Maps
 	if (checkMaps == true && checkALL == true) {
-		
+		searchType = "All";
+		mapLooper(searchType, root, genreType);
 	}
 	else if (checkMaps == true && checkYear == true) {
-
+		searchType = "Year";
+		mapLooper(searchType, root, genreType);
 	}
 	else if (checkMaps == true && checkGenre == true) {
-
+		searchType = "Genre";
+		mapLooper(searchType, root, genreType);
 	}
 	else if (checkMaps == true && checkDuration == true) {
-
+		searchType = "Duration";
+		mapLooper(searchType, root, genreType);
 	}
 	else if (checkMaps == true && checkGenreSearch == true) {
-
+		searchType = "Genre Search";
+		mapLooper(searchType, root, genreType);
 	}
+	
+	//BSTs
 	else if (checkBST == true && checkALL == true) {
 		searchType = "All";
 		BSTLooper(searchType, root, genreType);
@@ -184,9 +193,8 @@ void mapLooper(string searchType, MapBST* root, string genreType) {
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	
-	root->getInorder(root);
 	if (searchType == "All") {
-		continue;
+		root->printInorder(root);
 	}
 	
 	else if (searchType == "Year" || searchType == "Genre" || searchType == "Duration") {
@@ -196,8 +204,6 @@ void mapLooper(string searchType, MapBST* root, string genreType) {
 	else if (searchType == "Genre Search") {
 		root->getInorderGenre(root, genreType);
 	}
-	
-	root->printList();
 	
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
