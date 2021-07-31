@@ -183,21 +183,21 @@ void mapLooper(string searchType, MapBST* root, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	
+	root->getInorder(root);
 	if (searchType == "All") {
-		
+		continue;
 	}
-	else if (searchType == "Year") {
-		
+	
+	else if (searchType == "Year" || searchType == "Genre" || searchType == "Duration") {
+		root->sortGenre(root, searchType);
 	}
-	else if (searchType == "Genre") {
-		
-	}
-	else if (searchType == "Duration") {
-		
-	}
+	
 	else if (searchType == "Genre Search") {
-		
+		root->getInorderGenre(root, genreType);
 	}
+	
+	root->printList();
 	
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
