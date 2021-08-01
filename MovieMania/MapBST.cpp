@@ -53,11 +53,11 @@ void MapBST::getInorderGenre(MapBST* root, string genre) {	//Gets every movie in
 
 	else {
 
-		getInorder(root->left);
+		getInorderGenre(root->left, genre);
 		if (root->m->getGenre() == genre) {
 			printInfo(root->m);
 		}
-		getInorder(root->right);
+		getInorderGenre(root->right, genre);
 	}
 }
 
@@ -66,19 +66,19 @@ void MapBST::sortGenre(MapBST* root, string genre) {
 	getInorder(root);
 	if (genre == "Year") {
 
-		cout << "We are now sorting the BST by year." << endl;
+		cout << "We are now sorting the Map by year." << endl;
 		sort(moviesList.begin(), moviesList.end(), sortByYear);
 	}
 
 	else if (genre == "Genre") {
 
-		cout << "We are now sorting the BST by genre." << endl;
+		cout << "We are now sorting the Map by genre." << endl;
 		sort(moviesList.begin(), moviesList.end(), sortByGenre);
 	}
 
 	else if (genre == "Duration") {
 
-		cout << "We are now sorting the BST by duration." << endl;
+		cout << "We are now sorting the Map by duration." << endl;
 		sort(moviesList.begin(), moviesList.end(), sortByDuration);
 	}
 
