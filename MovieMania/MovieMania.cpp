@@ -8,7 +8,7 @@
 #include "Movies.h"
 #include "MapBST.h"
 using namespace std;
-void mainMenu(BST* root);
+void mainMenu(BST* root, MapBST* mapRoot);
 void BSTLooper(string searchType, BST* root, string genreType);
 void mapLooper(string searchType, MapBST* root, string genreType);
 int main()
@@ -52,7 +52,7 @@ int main()
 	mainMenu(root);
 }
 // Main menu function to display type of search options
-void mainMenu(BST* root) {
+void mainMenu(BST* root, MapBST* mapRoot) {
 	bool checkMaps = false;
 	bool checkBST = false;
 	bool checkALL = false;
@@ -110,7 +110,7 @@ void mainMenu(BST* root) {
 	default:
 		cout << "This is not a valid option. Let's try again from the beginning." << endl;
 		cout << endl;
-		mainMenu(root);
+		mainMenu(root, mapRoot);
 		break;
 	}
 	system("cls");
@@ -118,23 +118,23 @@ void mainMenu(BST* root) {
 	//Maps
 	if (checkMaps == true && checkALL == true) {
 		searchType = "All";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkYear == true) {
 		searchType = "Year";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkGenre == true) {
 		searchType = "Genre";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkDuration == true) {
 		searchType = "Duration";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkGenreSearch == true) {
 		searchType = "Genre Search";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, mapRoot, genreType);
 	}
 	
 	//BSTs
