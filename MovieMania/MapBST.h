@@ -33,8 +33,9 @@ public:
 	bool sortByDuration(Movies* a, Movies* b);
 
 	//Printers
-	void printInfo(Movies* _m);	//Prints info of movie object
-	void printList();		//Prints moviesList
+	void printInorder(MapBST* root); //Prints inorder traversal
+	void printInfo(Movies* _m);		 //Prints info of movie object
+	void printList();				 //Prints moviesList
 
 	void clearList();
 };
