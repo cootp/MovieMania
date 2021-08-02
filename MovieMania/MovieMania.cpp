@@ -9,8 +9,8 @@
 #include "MapBST.h"
 using namespace std;
 void mainMenu(BST* root, MapBST* mapRoot);
-void BSTLooper(string searchType, BST* root, string genreType);
-void mapLooper(string searchType, MapBST* root, string genreType);
+void BSTLooper(string searchType, BST* root, MapBST* mapRoot, string genreType);
+void mapLooper(string searchType, BST* root, MapBST* mapRoot, string genreType);
 int main()
 {
 	// Code that inputs all information for the BST and maps in alphabetical order
@@ -49,7 +49,7 @@ int main()
 	system("pause");
 	system("cls");
 	cout << "	   Let's find your movie" << endl << endl;
-	mainMenu(root);
+	mainMenu(root, mapRoot);
 }
 // Main menu function to display type of search options
 void mainMenu(BST* root, MapBST* mapRoot) {
@@ -77,7 +77,7 @@ void mainMenu(BST* root, MapBST* mapRoot) {
 	else {
 		cout << "This is not a valid option. Let's try again from the beginning." << endl;
 		cout << endl;
-		mainMenu(root);
+		mainMenu(root, mapRoot);
 	}
 	cout << "Choose a Search Type:" << endl;
 	cout << "1. All			2. Year" << endl;
@@ -118,49 +118,49 @@ void mainMenu(BST* root, MapBST* mapRoot) {
 	//Maps
 	if (checkMaps == true && checkALL == true) {
 		searchType = "All";
-		mapLooper(searchType, mapRoot, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkYear == true) {
 		searchType = "Year";
-		mapLooper(searchType, mapRoot, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkGenre == true) {
 		searchType = "Genre";
-		mapLooper(searchType, mapRoot, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkDuration == true) {
 		searchType = "Duration";
-		mapLooper(searchType, mapRoot, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkGenreSearch == true) {
 		searchType = "Genre Search";
-		mapLooper(searchType, mapRoot, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	
 	//BSTs
 	else if (checkBST == true && checkALL == true) {
 		searchType = "All";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkYear == true) {
 		searchType = "Year";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkGenre == true) {
 		searchType = "Genre";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkDuration == true) {
 		searchType = "Duration";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkGenreSearch == true) {
 		searchType = "Genre Search";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 }
 
-void BSTLooper(string searchType, BST* root, string genreType){
+void BSTLooper(string searchType, BST* root, MapBST* mapRoot, string genreType){
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -185,10 +185,10 @@ void BSTLooper(string searchType, BST* root, string genreType){
 	system("pause");
 	cout << endl;
 	system("cls");
-	mainMenu(root);
+	mainMenu(root, mapRoot);
 }
 
-void mapLooper(string searchType, MapBST* root, string genreType) {
+void mapLooper(string searchType, BST* root, MapBST* root, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -213,5 +213,5 @@ void mapLooper(string searchType, MapBST* root, string genreType) {
 	system("pause");
 	cout << endl;
 	system("cls");
-	mainMenu(root);	
+	mainMenu(root, mapRoot);	
 }
