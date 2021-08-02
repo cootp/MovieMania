@@ -8,9 +8,9 @@
 #include "Movies.h"
 #include "MapBST.h"
 using namespace std;
-void mainMenu(BST* root);
-void BSTLooper(string searchType, BST* root, string genreType);
-void mapLooper(string searchType, MapBST* root, string genreType);
+void mainMenu(BST* root, MapBST* mapRoot);
+void BSTLooper(string searchType, BST* root, MapBST* mapRoot, string genreType);
+void mapLooper(string searchType, BST* root, MapBST* mapRoot, string genreType);
 int main()
 {
 	// Code that inputs all information for the BST and maps in alphabetical order
@@ -49,10 +49,10 @@ int main()
 	system("pause");
 	system("cls");
 	cout << "	   Let's find your movie" << endl << endl;
-	mainMenu(root);
+	mainMenu(root, mapRoot);
 }
 // Main menu function to display type of search options
-void mainMenu(BST* root) {
+void mainMenu(BST* root, MapBST* mapRoot) {
 	bool checkMaps = false;
 	bool checkBST = false;
 	bool checkALL = false;
@@ -77,7 +77,7 @@ void mainMenu(BST* root) {
 	else {
 		cout << "This is not a valid option. Let's try again from the beginning." << endl;
 		cout << endl;
-		mainMenu(root);
+		mainMenu(root, mapRoot);
 	}
 	cout << "Choose a Search Type:" << endl;
 	cout << "1. All			2. Year" << endl;
@@ -110,57 +110,57 @@ void mainMenu(BST* root) {
 	default:
 		cout << "This is not a valid option. Let's try again from the beginning." << endl;
 		cout << endl;
-		mainMenu(root);
+		mainMenu(root, mapRoot);
 		break;
 	}
 	system("cls");
-	
+
 	//Maps
 	if (checkMaps == true && checkALL == true) {
 		searchType = "All";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkYear == true) {
 		searchType = "Year";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkGenre == true) {
 		searchType = "Genre";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkDuration == true) {
 		searchType = "Duration";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkMaps == true && checkGenreSearch == true) {
 		searchType = "Genre Search";
-		mapLooper(searchType, root, genreType);
+		mapLooper(searchType, root, mapRoot, genreType);
 	}
-	
+
 	//BSTs
 	else if (checkBST == true && checkALL == true) {
 		searchType = "All";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkYear == true) {
 		searchType = "Year";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkGenre == true) {
 		searchType = "Genre";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkDuration == true) {
 		searchType = "Duration";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 	else if (checkBST == true && checkGenreSearch == true) {
 		searchType = "Genre Search";
-		BSTLooper(searchType, root, genreType);
+		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 }
 
-void BSTLooper(string searchType, BST* root, string genreType){
+void BSTLooper(string searchType, BST* root, MapBST* mapRoot, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -185,33 +185,33 @@ void BSTLooper(string searchType, BST* root, string genreType){
 	system("pause");
 	cout << endl;
 	system("cls");
-	mainMenu(root);
+	mainMenu(root, mapRoot);
 }
 
-void mapLooper(string searchType, MapBST* root, string genreType) {
+void mapLooper(string searchType, BST* root, MapBST* mapRoot, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
-	
+
 	if (searchType == "All") {
-		root->printInorder(root);
+		mapRoot->printInorder(mapRoot);
 	}
-	
+
 	else if (searchType == "Year" || searchType == "Genre" || searchType == "Duration") {
-		root->sortGenre(root, searchType);
+		mapRoot->sortGenre(mapRoot, searchType);
 	}
-	
+
 	else if (searchType == "Genre Search") {
-		root->getInorderGenre(root, genreType);
+		mapRoot->getInorderGenre(mapRoot, genreType);
 	}
-	
+
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
-	
+
 	std::cout << "Searching and Displaying all of the information using a Map and sorting by " << searchType << " took " << time_span.count() << " seconds." << endl;
-	
+
 	system("pause");
 	cout << endl;
 	system("cls");
-	mainMenu(root);	
+	mainMenu(root, mapRoot);
 }

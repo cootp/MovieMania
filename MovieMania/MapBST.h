@@ -9,18 +9,18 @@ class MapBST {
 
 private:
 
-	Movies* m;
+	Movies m;
 	MapBST* left;
 	MapBST* right;
-	vector<Movies*> moviesList;
+	vector<Movies> moviesList;
 
 public:
 
 	//Constructors
 	MapBST();
-	MapBST(Movies* _m);
+	MapBST(Movies _m);
 
-	MapBST* insert(Movies* movie, MapBST* root);
+	MapBST* insert(Movies movie, MapBST* root);
 
 	//Traversals
 	void getInorder(MapBST* root);
@@ -28,13 +28,14 @@ public:
 
 	//Sorters
 	void sortGenre(MapBST* root, string genre);
-	bool sortByYear(Movies* a, Movies* b);
-	bool sortByGenre(Movies* a, Movies* b);
-	bool sortByDuration(Movies* a, Movies* b);
+	static bool sortByYear(Movies a, Movies b);
+	static bool sortByGenre(Movies a, Movies b);
+	static bool sortByDuration(Movies a, Movies b);
 
 	//Printers
-	void printInfo(Movies* _m);	//Prints info of movie object
-	void printList();		//Prints moviesList
+	void printInorder(MapBST* root); //Prints inorder traversal
+	void printInfo(Movies _m);		 //Prints info of movie object
+	void printList();				 //Prints moviesList
 
 	void clearList();
 };

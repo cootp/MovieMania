@@ -1,26 +1,23 @@
 #include "MapBST.h"
 
 MapBST::MapBST() {
-
-	m = nullptr;
 	left = nullptr;
 	right = nullptr;
 }
 
-MapBST::MapBST(Movies* _m) {
-
+MapBST::MapBST(Movies _m) {
 	m = _m;
 	left = nullptr;
 	right = nullptr;
 }
 
-MapBST* MapBST::insert(Movies* movie, MapBST* root) {		//Inserts movies based on their title
+MapBST* MapBST::insert(Movies movie, MapBST* root) {		//Inserts movies based on their title
 
 	if (root == nullptr) {
 		return new MapBST(movie);
 	}
 
-	if (movie->getTitle() < root->m->getTitle()) {
+	if (movie.getTitle() < root->m.getTitle()) {
 		root->left = insert(movie, root->left);
 	}
 
@@ -54,7 +51,7 @@ void MapBST::getInorderGenre(MapBST* root, string genre) {	//Gets every movie in
 	else {
 
 		getInorderGenre(root->left, genre);
-		if (root->m->getGenre() == genre) {
+		if (root->m.getGenre() == genre) {
 			printInfo(root->m);
 		}
 		getInorderGenre(root->right, genre);
@@ -85,16 +82,16 @@ void MapBST::sortGenre(MapBST* root, string genre) {
 	printList();
 }
 
-bool MapBST::sortByYear(Movies* a, Movies* b) {
-	return (a->getYear() < b->getYear());
+bool MapBST::sortByYear(Movies a, Movies b) {
+	return (a.getYear() < b.getYear());
 }
 
-bool MapBST::sortByGenre(Movies* a, Movies* b) {
-	return (a->getGenre() < b->getGenre());
+bool MapBST::sortByGenre(Movies a, Movies b) {
+	return (a.getGenre() < b.getGenre());
 }
 
-bool MapBST::sortByDuration(Movies* a, Movies* b) {
-	return (a->getDuration() < b->getDuration());
+bool MapBST::sortByDuration(Movies a, Movies b) {
+	return (a.getDuration() < b.getDuration());
 }
 
 void MapBST::printInorder(MapBST* root) {
@@ -111,12 +108,12 @@ void MapBST::printInorder(MapBST* root) {
 	}
 }
 
-void MapBST::printInfo(Movies* _m) {
+void MapBST::printInfo(Movies _m) {
 
-	cout << "Title: " << _m->getTitle() << endl;
-	cout << "Year: " << _m->getYear() << endl;
-	cout << "Genre: " << _m->getGenre() << endl;
-	cout << "Duration: " << _m->getDuration() << endl;
+	cout << "Title: " << _m.getTitle() << endl;
+	cout << "Year: " << _m.getYear() << endl;
+	cout << "Genre: " << _m.getGenre() << endl;
+	cout << "Duration: " << _m.getDuration() << endl;
 	cout << endl;
 }
 
