@@ -49,6 +49,7 @@ int main()
 }
 // Design for our loading screen
 void asciCodeDisplay() {
+	// Displaying ASCII code for loading screen
 	cout << "Please wait while we import our dataset." << endl;
 	cout << R"( ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ 
 ||M |||O |||V |||I |||E |||       |||M |||A |||N |||I |||A ||
@@ -85,6 +86,7 @@ _/__/___|_(___/__|/__/___(___ _____/__/___|_(___(_/___/_/___(___(_)";
 	std::this_thread::sleep_for(std::chrono::seconds(3));
 	system("cls");
 }
+// Inserts depending if it is BST and Map
 void insertFunction() {
 	ifstream movieInfo("IMDb_movies.csv");
 	int i = 0;
@@ -115,7 +117,7 @@ void insertFunction() {
 			root = root->insert(root, obj);
 		}
 		else {
-			//Insert into Maps
+			// Insert into Maps
 			mapRoot.insert(title, obj);
 		}
 		
@@ -234,7 +236,7 @@ void mainMenu(BST* root, Map<string, Movies> mapRoot) {
 		BSTLooper(searchType, root, mapRoot, genreType);
 	}
 }
-
+// Checks looper variables to determine proper search results for BST
 void BSTLooper(string searchType, BST* root, Map<string, Movies> mapRoot, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
@@ -262,7 +264,7 @@ void BSTLooper(string searchType, BST* root, Map<string, Movies> mapRoot, string
 	system("cls");
 	mainMenu(root, mapRoot);
 }
-
+// Checks looper variables to determine proper search results for Map
 void mapLooper(string searchType, BST* root, Map<string, Movies> mapRoot, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;

@@ -4,6 +4,7 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 #include "Movies.h"
+// Map template for making map algorithm look similar to STL
 template <class KEY, class VALUE>
 class Map {
 private:
@@ -17,16 +18,22 @@ private:
 	void getInorderGenre(Map* rooted, string genre);
 	void getInorder(Map* rooted);
 	void printInOrder(Map* rooted);
+	// Used for comparing for vector sort function
 	static bool sortByYear(VALUE a, VALUE b);
 	static bool sortByGenre(VALUE a, VALUE b);
 	static bool sortByDuration(VALUE a, VALUE b);
 public:
+	// Default Constructor
 	Map();
 	Map(KEY key, VALUE val);
+	// Method for inserting value into BST
 	void insert(KEY key, VALUE val);
+	// Method for sorting depending on the genre type
 	void sortGenre(string genre);
+	// Uses inorder traversal for printing
 	void printInOrder();
 	void getInorderGenre(string genre);
+	// Gets VALUE variable and prints the data
 	void printInfo(VALUE value);
 	void printList();
 	void clearList();
