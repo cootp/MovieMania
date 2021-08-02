@@ -140,13 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BST.cpp" />
-    <ClCompile Include="MapBST.cpp" />
     <ClCompile Include="MovieMania.cpp" />
     <ClCompile Include="Movies.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST.h" />
-    <ClInclude Include="MapBST.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Movies.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

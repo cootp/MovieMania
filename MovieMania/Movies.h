@@ -5,12 +5,12 @@ private:
 	string title;
 	string year;
 	string genre;
-	string duration;
+	int duration;
 public:
 	Movies();
-	Movies(string title_, string year_, string genre_, string duration_);
+	Movies(string title_, string year_, string genre_, int duration_);
 	string getTitle();
 	string getYear();
 	string getGenre();
-	string getDuration();
+	int getDuration();
 };

@@ -2,12 +2,12 @@
 #include <vector>
 #include "Movies.h"
 class BST {
-public:
+private:
 	vector<Movies> tempSort;
 	Movies val;
 	BST* left;
 	BST* right;
-
+public:
 	BST(Movies x);
 	BST* insert(BST* root, Movies obj);
 	void inorderALL(BST* root);

@@ -6,19 +6,20 @@
 #include <string>
 #include "BST.h"
 #include "Movies.h"
-#include "MapBST.h"
+#include "Map.h"
 using namespace std;
-void mainMenu(BST* root, MapBST* mapRoot);
-void BSTLooper(string searchType, BST* root, MapBST* mapRoot, string genreType);
-void mapLooper(string searchType, BST* root, MapBST* mapRoot, string genreType);
+void mainMenu(BST* root, Map<string, Movies> mapRoot);
+void BSTLooper(string searchType, BST* root, Map<string, Movies> mapRoot, string genreType);
+void mapLooper(string searchType, BST* root, Map<string, Movies> mapRoot, string genreType);
 int main()
 {
 	// Code that inputs all information for the BST and maps in alphabetical order
-	BST* root = NULL;
-	MapBST* mapRoot = nullptr;
+	BST* root = nullptr;
+	Map<string, Movies> mapRoot;
 	ifstream movieInfo("IMDb_movies.csv");
 	int i = 0;
 	string title, year, genre, duration;
+	int mainDuration;
 	cout << "Importing Data. Please Wait." << endl;
 	while (!movieInfo.eof()) {
 		// Used to skip the first row of the csv file that contains the column info
@@ -35,24 +36,25 @@ int main()
 		getline(movieInfo, year, ',');
 		getline(movieInfo, genre, ',');
 		getline(movieInfo, duration);
+		mainDuration = std::stoi(duration);
 		// Creates Movie obj with gathered information
-		Movies obj(title, year, genre, duration);
+		Movies obj(title, year, genre, mainDuration);
 		// Inserts into BST
 		root = root->insert(root, obj);
 		//Insert into Maps
-		mapRoot = mapRoot->insert(obj, mapRoot);
+		mapRoot.insert(title, obj);
 	}
-	system("cls");
+	//system("cls");
 	cout << "Hello Stranger! Welcome to Movie Mania." << endl << endl;
 	cout << "Movie Mania contains over 80,000 movies for you to search from." << endl;
 	cout << endl;
 	system("pause");
 	system("cls");
-	cout << "	   Let's find your movie" << endl << endl;
+	cout << "Let's find your movie" << endl << endl;
 	mainMenu(root, mapRoot);
 }
 // Main menu function to display type of search options
-void mainMenu(BST* root, MapBST* mapRoot) {
+void mainMenu(BST* root, Map<string, Movies> mapRoot) {
 	bool checkMaps = false;
 	bool checkBST = false;
 	bool checkALL = false;
@@ -160,7 +162,7 @@ void mainMenu(BST* root, MapBST* mapRoot) {
 	}
 }
 
-void BSTLooper(string searchType, BST* root, MapBST* mapRoot, string genreType) {
+void BSTLooper(string searchType, BST* root, Map<string, Movies> mapRoot, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -188,21 +190,21 @@ void BSTLooper(string searchType, BST* root, MapBST* mapRoot, string genreType) 
 	mainMenu(root, mapRoot);
 }
 
-void mapLooper(string searchType, BST* root, MapBST* mapRoot, string genreType) {
+void mapLooper(string searchType, BST* root, Map<string, Movies> mapRoot, string genreType) {
 	// Timer code function taken from https://www.cplusplus.com/reference/chrono/high_resolution_clock/now/
 	using namespace std::chrono;
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
 	if (searchType == "All") {
-		mapRoot->printInorder(mapRoot);
+		mapRoot.printInOrder();
 	}
 
 	else if (searchType == "Year" || searchType == "Genre" || searchType == "Duration") {
-		mapRoot->sortGenre(mapRoot, searchType);
+		mapRoot.sortGenre(searchType);
 	}
 
 	else if (searchType == "Genre Search") {
-		mapRoot->getInorderGenre(mapRoot, genreType);
+		mapRoot.getInorderGenre(genreType);
 	}
 
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();

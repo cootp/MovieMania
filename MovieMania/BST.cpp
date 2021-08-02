@@ -3,11 +3,11 @@
 #include "BST.h"
 BST::BST(Movies x) {
 	val = x;
-	left = NULL;
-	right = NULL;
+	left = nullptr;
+	right = nullptr;
 }
 BST* BST::insert(BST* root, Movies obj) {
-	if (root == NULL) {
+	if (root == nullptr) {
 		return new BST(obj);
 	}
 	if (obj.getTitle() < root->val.getTitle()) {
@@ -20,7 +20,7 @@ BST* BST::insert(BST* root, Movies obj) {
 }
 
 void BST::inorderALL(BST* root) {
-	if (root == NULL) {
+	if (root == nullptr) {
 		cout << "";
 	}
 	else {
@@ -28,14 +28,14 @@ void BST::inorderALL(BST* root) {
 		cout << "Title: " << root->val.getTitle() << endl;
 		cout << "Year: " << root->val.getYear() << endl;
 		cout << "Genre: " << root->val.getGenre() << endl;
-		cout << "Duration: " << root->val.getDuration() << endl;
+		cout << "Duration: " << root->val.getDuration() << " minutes" << endl;
 		cout << endl;
 		inorderALL(root->right);
 	}
 }
 
 void BST::inorderGenre(BST* root, string searchType) {
-	if (root == NULL) {
+	if (root == nullptr) {
 		cout << "";
 	}
 	else {
@@ -44,7 +44,7 @@ void BST::inorderGenre(BST* root, string searchType) {
 			cout << "Title: " << root->val.getTitle() << endl;
 			cout << "Year: " << root->val.getYear() << endl;
 			cout << "Genre: " << root->val.getGenre() << endl;
-			cout << "Duration: " << root->val.getDuration() << endl;
+			cout << "Duration: " << root->val.getDuration() << " minutes" << endl;
 			cout << endl;
 		}
 		inorderGenre(root->right, searchType);
@@ -52,7 +52,7 @@ void BST::inorderGenre(BST* root, string searchType) {
 }
 
 void BST::traversBST(BST* root) {
-	if (root == NULL) {
+	if (root == nullptr) {
 		cout << "";
 	}
 	else {
@@ -79,7 +79,7 @@ void BST::sortByString(BST* root, string newString){
 		cout << "Title: " << it.getTitle() << endl;
 		cout << "Year: " << it.getYear() << endl;
 		cout << "Genre: " << it.getGenre() << endl;
-		cout << "Duration: " << it.getDuration() << endl;
+		cout << "Duration: " << it.getDuration() << " minutes" << endl;
 		cout << endl;
 	}
 }

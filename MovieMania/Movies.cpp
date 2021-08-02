@@ -5,10 +5,10 @@ Movies::Movies() {
 	title = "";
 	year = "";
 	genre = "";
-	duration = "";
+	duration = 0;
 
 }
-Movies::Movies(string title_, string year_, string genre_, string duration_) {
+Movies::Movies(string title_, string year_, string genre_, int duration_) {
 	title = title_;
 	year = year_;
 	genre = genre_;
@@ -23,6 +23,6 @@ string Movies::getYear() {
 string Movies::getGenre() {
 	return genre;
 }
-string Movies::getDuration() {
+int Movies::getDuration() {
 	return duration;
 }
