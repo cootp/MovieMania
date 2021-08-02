@@ -213,5 +213,5 @@ void mapLooper(string searchType, BST* root, MapBST* mapRoot, string genreType) 
 	system("pause");
 	cout << endl;
 	system("cls");
-	mainMenu(root);	
+	mainMenu(root, mapRoot);
 }
