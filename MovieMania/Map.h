@@ -138,10 +138,12 @@ void Map<KEY, VALUE>::printInOrder() {
 
 template<class KEY, class VALUE>
 inline void Map<KEY, VALUE>::printInfo(VALUE value) {
-	cout << "Title: " << value.getTitle() << endl;
-	cout << "Year: " << value.getYear() << endl;
-	cout << "Genre: " << value.getGenre() << endl;
-	cout << "Duration: " << value.getDuration() << " minutes" << endl;
+	cout << "x==============================================x" << endl;
+	cout << "| Title: " << value.getTitle() << endl;
+	cout << "| Year: " << value.getYear() << endl;
+	cout << "| Genre: " << value.getGenre() << endl;
+	cout << "| Duration: " << value.getDuration() << " minutes" << endl;
+	cout << "x==============================================x" << endl;
 	cout << endl;
 }
 
@@ -161,10 +163,12 @@ template <class KEY, class VALUE>
 void Map<KEY, VALUE>::printInOrder(Map* rooted) {
 	if (rooted != nullptr) {
 		printInOrder(rooted->left);
-		cout << "Title: " << rooted->value.getTitle() << endl;
-		cout << "Year: " << rooted->value.getYear() << endl;
-		cout << "Genre: " << rooted->value.getGenre() << endl;
-		cout << "Duration: " << rooted->value.getDuration() << " minutes" << endl;
+		cout << "x==============================================x" << endl;
+		cout << "| Title: " << rooted->value.getTitle() << endl;
+		cout << "| Year: " << rooted->value.getYear() << endl;
+		cout << "| Genre: " << rooted->value.getGenre() << endl;
+		cout << "| Duration: " << rooted->value.getDuration() << " minutes" << endl;
+		cout << "x==============================================x" << endl;
 		cout << endl;
 		printInOrder(rooted->right);
 	}

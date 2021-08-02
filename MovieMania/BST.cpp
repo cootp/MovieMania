@@ -25,10 +25,12 @@ void BST::inorderALL(BST* root) {
 	}
 	else {
 		inorderALL(root->left);
-		cout << "Title: " << root->val.getTitle() << endl;
-		cout << "Year: " << root->val.getYear() << endl;
-		cout << "Genre: " << root->val.getGenre() << endl;
-		cout << "Duration: " << root->val.getDuration() << " minutes" << endl;
+		cout << "x==============================================x" << endl;
+		cout << "| Title: " << root->val.getTitle() << endl;
+		cout << "| Year: " << root->val.getYear() << endl;
+		cout << "| Genre: " << root->val.getGenre() << endl;
+		cout << "| Duration: " << root->val.getDuration() << " minutes" << endl;
+		cout << "x==============================================x" << endl;
 		cout << endl;
 		inorderALL(root->right);
 	}
@@ -41,10 +43,12 @@ void BST::inorderGenre(BST* root, string searchType) {
 	else {
 		inorderGenre(root->left, searchType);
 		if (root->val.getGenre() == searchType) {
-			cout << "Title: " << root->val.getTitle() << endl;
-			cout << "Year: " << root->val.getYear() << endl;
-			cout << "Genre: " << root->val.getGenre() << endl;
-			cout << "Duration: " << root->val.getDuration() << " minutes" << endl;
+			cout << "x==============================================x" << endl;
+			cout << "| Title: " << root->val.getTitle() << endl;
+			cout << "| Year: " << root->val.getYear() << endl;
+			cout << "| Genre: " << root->val.getGenre() << endl;
+			cout << "| Duration: " << root->val.getDuration() << " minutes" << endl;
+			cout << "x==============================================x" << endl;
 			cout << endl;
 		}
 		inorderGenre(root->right, searchType);
@@ -76,10 +80,12 @@ void BST::sortByString(BST* root, string newString){
 		sort(tempSort.begin(), tempSort.end(), CompareDuration);
 	}
 	for (auto it : tempSort) {
-		cout << "Title: " << it.getTitle() << endl;
-		cout << "Year: " << it.getYear() << endl;
-		cout << "Genre: " << it.getGenre() << endl;
-		cout << "Duration: " << it.getDuration() << " minutes" << endl;
+		cout << "x==============================================x" << endl;
+		cout << "| Title: " << it.getTitle() << endl;
+		cout << "| Year: " << it.getYear() << endl;
+		cout << "| Genre: " << it.getGenre() << endl;
+		cout << "| Duration: " << it.getDuration() << " minutes" << endl;
+		cout << "x==============================================x" << endl;
 		cout << endl;
 	}
 }
